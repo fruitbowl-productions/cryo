@@ -33,7 +33,7 @@ namespace Cryo
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            // TODO use this.Content to load your game content here
         }
 
         protected override void Update(GameTime gameTime)
@@ -45,7 +45,7 @@ namespace Cryo
                 Exit();
             }
 
-            // TODO: Add your update logic here
+            // TODO Add your update logic here
 
             base.Update(gameTime);
         }
@@ -55,7 +55,14 @@ namespace Cryo
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-            // TODO: Add your drawing code here
+            
+            // TODO Add your drawing code here
+
+            while (DrawActions.Count != 0)
+            {
+                DrawActions.Dequeue().Invoke(spriteBatch);
+            }
+
             spriteBatch.End();
 
             base.Draw(gameTime);
