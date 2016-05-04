@@ -14,14 +14,14 @@ namespace Cryo
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
-        
+
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
 
             base.Initialize();
         }
-        
+
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
