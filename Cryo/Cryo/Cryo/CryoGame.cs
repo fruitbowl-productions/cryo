@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using Cryo.Engine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -6,18 +9,22 @@ namespace Cryo
 {
     public class CryoGame : Game
     {
-        private GraphicsDeviceManager graphics;
+        private readonly GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
+
+        public static Queue<Action<SpriteBatch>> DrawActions;
 
         public CryoGame()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            DrawActions = new Queue<Action<SpriteBatch>>();
         }
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            Assets.Initialize(Content);
+            Screen.Initialize(graphics);
 
             base.Initialize();
         }
@@ -31,7 +38,9 @@ namespace Cryo
 
         protected override void Update(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            Engine.Keyboards.Keyboard.Update();
+
+            if (Engine.Keyboards.Keyboard.IsKeyDown(Keys.Escape))
             {
                 Exit();
             }

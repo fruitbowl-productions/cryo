@@ -6,9 +6,9 @@ namespace Cryo.UI
 {
     public abstract class Page
     {
-        public List<Element> Elements { get; set; } = new List<Element>();
         private Color backgroundColor;
         private Cursor cursor;
+        public List<Element> Elements { get; set; } = new List<Element>();
 
         public virtual void Initialize(Color backgroundColorInput, Cursor cursorInput)
         {

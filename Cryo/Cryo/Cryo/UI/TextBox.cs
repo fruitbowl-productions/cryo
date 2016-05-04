@@ -7,10 +7,6 @@ namespace Cryo.UI
     {
         private readonly Color color;
         private readonly SpriteFont spriteFont;
-        public int Length { get; set; }
-        public string Text { get; set; }
-
-        public Vector2 Dimensions => spriteFont.MeasureString(Text);
 
         public TextBox(string text, Vector2 location, SpriteFont spriteFont, Color color)
         {
@@ -19,6 +15,11 @@ namespace Cryo.UI
             this.spriteFont = spriteFont;
             this.color = color;
         }
+
+        public int Length { get; set; }
+        public string Text { get; set; }
+
+        public Vector2 Dimensions => spriteFont.MeasureString(Text);
 
         public override void Draw(SpriteBatch spriteBatch)
         {
