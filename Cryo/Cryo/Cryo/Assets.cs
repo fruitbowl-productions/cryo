@@ -5,7 +5,7 @@ namespace Cryo
 {
     public static class Assets
     {
-        private static ContentManager content;
+        private static ContentManager content { get; set; }
 
         public static void Initialize(ContentManager contentManager)
         {
@@ -19,19 +19,48 @@ namespace Cryo
         {
             public static void Initialize()
             {
+                Platform.Initialize();
+                Player.Initialize();
             }
 
-            private static Texture2D LoadTexture2D(string path)
+            private static Texture2D LoadTexture2D(string path) => content.Load<Texture2D>($"Texture2Ds\\{path}");
+
+            public static class Platform
             {
-                return content.Load<Texture2D>($"Textures\\{path}");
+                public static Texture2D Red { get; private set; }
+                public static Texture2D Green { get; private set; }
+                public static Texture2D Blue { get; private set; }
+
+                public static void Initialize()
+                {
+                    Red = LoadPlatformTexture2D("Red");
+                    Green = LoadPlatformTexture2D("Green");
+                    Blue = LoadPlatformTexture2D("Blue");
+                }
+
+                private static Texture2D LoadPlatformTexture2D(string path) => LoadTexture2D($"Platform\\{path}");
+            }
+
+            public static class Player
+            {
+                public static Texture2D Red { get; private set; }
+                public static Texture2D Green { get; private set; }
+                public static Texture2D Blue { get; private set; }
+
+                public static void Initialize()
+                {
+                    Red = LoadPlayerTexture2D("Red");
+                    Green = LoadPlayerTexture2D("Green");
+                    Blue = LoadPlayerTexture2D("Blue");
+                }
+
+                private static Texture2D LoadPlayerTexture2D(string path) => LoadTexture2D($"Player\\{path}");
             }
         }
 
         public static class Fonts
         {
-            public static void Initialize()
-            {
-            }
+            public static void Initialize() { }
 
             private static SpriteFont LoadFont(string path)
             {

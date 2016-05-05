@@ -14,3 +14,6 @@ D:\jgros\Source\Repos\cryo\Cryo\Cryo\Cryo\obj\x86\Debug\Cryo.csprojResolveAssemb
 D:\jgros\Source\Repos\cryo\Cryo\Cryo\Cryo\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 D:\jgros\Source\Repos\cryo\Cryo\Cryo\Cryo\obj\x86\Debug\Cryo.exe
 D:\jgros\Source\Repos\cryo\Cryo\Cryo\Cryo\obj\x86\Debug\Cryo.pdb
+D:\jgros\Source\Repos\cryo\Cryo\Cryo\Cryo\bin\x86\Debug\Content\Texture2Ds\Player\Green.xnb
+D:\jgros\Source\Repos\cryo\Cryo\Cryo\Cryo\bin\x86\Debug\Content\Texture2Ds\Player\Red.xnb
+D:\jgros\Source\Repos\cryo\Cryo\Cryo\Cryo\bin\x86\Debug\Content\Texture2Ds\Player\Blue.xnb

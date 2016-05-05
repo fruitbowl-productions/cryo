@@ -74,6 +74,10 @@
   <ItemGroup>
     <Compile Include="Assets.cs" />
     <Compile Include="Background.cs" />
+    <Compile Include="ColorChangingGameElement.cs" />
+    <Compile Include="Engine\Components\Component.cs" />
+    <Compile Include="Engine\Components\Physics\IPhysics.cs" />
+    <Compile Include="Engine\Components\Physics\PhysicsComponent.cs" />
     <Compile Include="Engine\GameTexture.cs" />
     <Compile Include="Engine\Keyboards\DelayedKeyboard.cs" />
     <Compile Include="Engine\Keyboards\Keyboard.cs" />
@@ -83,6 +87,8 @@
     <Compile Include="Extensions.cs" />
     <Compile Include="GameElement.cs" />
     <Compile Include="Image.cs" />
+    <Compile Include="Platform.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="CryoGame.cs" />

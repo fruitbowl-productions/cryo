@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using Cryo.Engine;
+using Cryo.Engine.Components;
+using Cryo.Engine.Components.Physics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -12,19 +14,22 @@ namespace Cryo
         private readonly GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
 
+        private Player player;
+        private Platform platform;
+
         public static Queue<Action<SpriteBatch>> DrawActions;
 
         public CryoGame()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            DrawActions = new Queue<Action<SpriteBatch>>();
         }
 
         protected override void Initialize()
         {
-            Assets.Initialize(Content);
             Screen.Initialize(graphics);
+
+            DrawActions = new Queue<Action<SpriteBatch>>();
 
             base.Initialize();
         }
@@ -33,7 +38,13 @@ namespace Cryo
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO use this.Content to load your game content here
+            Assets.Initialize(Content);
+
+            player = new Player(ColorChangingGameElement.PlatformColor.Red, Assets.Texture2Ds.Player.Blue, Assets.Texture2Ds.Player.Green, Assets.Texture2Ds.Player.Blue, Vector2.Zero, 1f);
+            player.FindComponent<PhysicsComponent>().Velocity = new Vector2(0.01f);
+
+            platform = new Platform(ColorChangingGameElement.PlatformColor.Blue, Assets.Texture2Ds.Platform.Red,
+                Assets.Texture2Ds.Platform.Green, Assets.Texture2Ds.Player.Blue, Vector2.Zero, 1f);
         }
 
         protected override void Update(GameTime gameTime)
@@ -45,7 +56,7 @@ namespace Cryo
                 Exit();
             }
 
-            // TODO Add your update logic here
+            player.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -56,7 +67,7 @@ namespace Cryo
 
             spriteBatch.Begin();
             
-            // TODO Add your drawing code here
+            player.Draw(spriteBatch);
 
             while (DrawActions.Count != 0)
             {

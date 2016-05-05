@@ -14,7 +14,6 @@ namespace Cryo
         private readonly List<Image> images;
 
         public Background(GameTexture texture)
-            : base(texture)
         {
             images = new List<Image>();
 
