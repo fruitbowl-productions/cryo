@@ -28,6 +28,33 @@
       <Output>D:\jgros\Source\Repos\cryo\Cryo\Cryo\Cryo\bin\x86\Debug\Content\Texture2Ds\Player\Blue.xnb</Output>
       <Time>2016-05-04T20:50:25.570445-07:00</Time>
     </Item>
+    <Item>
+      <Source>Texture2Ds\Platform\Red.jpg</Source>
+      <Name>Texture2Ds\Platform\Red</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\jgros\Source\Repos\cryo\Cryo\Cryo\Cryo\bin\x86\Debug\Content\Texture2Ds\Platform\Red.xnb</Output>
+      <Time>2016-05-04T20:53:56.3283114-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Texture2Ds\Platform\Blue.jpg</Source>
+      <Name>Texture2Ds\Platform\Blue</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\jgros\Source\Repos\cryo\Cryo\Cryo\Cryo\bin\x86\Debug\Content\Texture2Ds\Platform\Blue.xnb</Output>
+      <Time>2016-05-04T20:55:12.5305319-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Texture2Ds\Platform\Green.jpg</Source>
+      <Name>Texture2Ds\Platform\Green</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\jgros\Source\Repos\cryo\Cryo\Cryo\Cryo\bin\x86\Debug\Content\Texture2Ds\Platform\Green.xnb</Output>
+      <Time>2016-05-04T20:55:17.6053032-07:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{B46F5132-A11F-4B8B-B124-569FDA9DBEF7}</ContentProjectGUID>
