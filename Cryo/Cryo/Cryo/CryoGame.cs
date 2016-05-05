@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Cryo.Engine;
 using Cryo.Engine.Components;
+using Cryo.Engine.Components.ColorChange;
 using Cryo.Engine.Components.Physics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -40,10 +41,10 @@ namespace Cryo
 
             Assets.Initialize(Content);
 
-            player = new Player(ColorChangingGameElement.PlatformColor.Red, Assets.Texture2Ds.Player.Blue, Assets.Texture2Ds.Player.Green, Assets.Texture2Ds.Player.Blue, Vector2.Zero, 1f);
+            player = new Player(ColorChangeComponent.PlatformColor.Red, Assets.Texture2Ds.Player.Blue, Assets.Texture2Ds.Player.Green, Assets.Texture2Ds.Player.Blue, Vector2.Zero, 1f);
             player.FindComponent<PhysicsComponent>().Velocity = new Vector2(0.01f);
 
-            platform = new Platform(ColorChangingGameElement.PlatformColor.Blue, Assets.Texture2Ds.Platform.Red,
+            platform = new Platform(ColorChangeComponent.PlatformColor.Blue, Assets.Texture2Ds.Platform.Red,
                 Assets.Texture2Ds.Platform.Green, Assets.Texture2Ds.Player.Blue, Vector2.Zero, 1f);
         }
 

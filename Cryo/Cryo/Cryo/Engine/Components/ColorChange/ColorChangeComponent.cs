@@ -1,37 +1,38 @@
 ﻿using System.Collections.Generic;
-using Cryo.Engine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Cryo
+namespace Cryo.Engine.Components.ColorChange
 {
-    public abstract class ColorChangingGameElement : GameElement
+    public class ColorChangeComponent : Component
     {
         public enum PlatformColor
         {
-            Blue,
             Red,
-            Green
+            Green,
+            Blue
         }
 
-        private PlatformColor Color { get; set; }
+        private readonly IColorChange owner;
 
         private readonly Dictionary<PlatformColor, Texture2D> textures;
 
+        private PlatformColor Color { get; set; }
+
         private Texture2D CurrentTexture2D => textures[Color];
 
-        public ColorChangingGameElement(PlatformColor startingColor, Texture2D redTexture, Texture2D greenTexture, Texture2D blueTexture, Vector2 position, float scale)
+        public ColorChangeComponent(IColorChange ownerInput, Texture2D redTexture, Texture2D greenTexture, Texture2D blueTexture, PlatformColor startingColor)
         {
+            owner = ownerInput;
             textures = new Dictionary<PlatformColor, Texture2D>
             {
                 {PlatformColor.Red, redTexture},
                 {PlatformColor.Green, greenTexture},
                 {PlatformColor.Blue, blueTexture}
             };
-
-            Color = startingColor;
-
-            Texture = new GameTexture(CurrentTexture2D, position, scale);
+            ownerInput.SetTexture2D(CurrentTexture2D);
         }
+
+        public override void Update(GameTime gameTime) { }
     }
 }

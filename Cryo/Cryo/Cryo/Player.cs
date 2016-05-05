@@ -1,25 +1,24 @@
-﻿using Cryo.Engine.Components.Physics;
+﻿using Cryo.Engine;
+using Cryo.Engine.Components.ColorChange;
+using Cryo.Engine.Components.Physics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Cryo
 {
-    public class Player : ColorChangingGameElement, IPhysics
+    public class Player : GameElement, IColorChange
     {
-        public Player(PlatformColor startingColor, Texture2D redTexture, Texture2D greenTexture, Texture2D blueTexture, Vector2 position, float scale)
-            : base(startingColor, redTexture, greenTexture, blueTexture, position, scale)
+        public Player(ColorChangeComponent.PlatformColor startingColor, Texture2D redTexture, Texture2D greenTexture, Texture2D blueTexture, Vector2 position, float scale)
         {
-            Components.Add(new PhysicsComponent(this));
+            Texture = new GameTexture(null, position, scale);
+
+            Components.Add(new PhysicsComponent(this, PhysicsComponent.PhysicsType.Dynamic));
+            Components.Add(new ColorChangeComponent(this, redTexture, greenTexture, blueTexture, startingColor));
         }
 
-        public Vector2 GetPosition()
+        public void SetTexture2D(Texture2D value)
         {
-            return Texture.Position;
-        }
-
-        public void SetPosition(Vector2 value)
-        {
-            Texture.Position = value;
+            Texture.Texture = value;
         }
     }
 }

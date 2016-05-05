@@ -74,7 +74,8 @@
   <ItemGroup>
     <Compile Include="Assets.cs" />
     <Compile Include="Background.cs" />
-    <Compile Include="ColorChangingGameElement.cs" />
+    <Compile Include="Engine\Components\ColorChange\ColorChangeComponent.cs" />
+    <Compile Include="Engine\Components\ColorChange\IColorChange.cs" />
     <Compile Include="Engine\Components\Component.cs" />
     <Compile Include="Engine\Components\Physics\IPhysics.cs" />
     <Compile Include="Engine\Components\Physics\PhysicsComponent.cs" />

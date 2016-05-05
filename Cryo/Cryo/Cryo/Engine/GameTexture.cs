@@ -5,27 +5,27 @@ namespace Cryo.Engine
 {
     public class GameTexture
     {
-        private readonly Texture2D texture;
+        public Texture2D Texture;
         public Vector2 Position;
 
         public GameTexture(Texture2D texture, Vector2 position, float scale)
         {
-            this.texture = texture;
+            this.Texture = texture;
             Position = position;
             Scale = scale;
         }
 
         public GameTexture(GameTexture other)
         {
-            texture = other.texture;
+            Texture = other.Texture;
             Position = other.Position;
             Scale = other.Scale;
         }
 
         public float Scale { get; set; }
 
-        public float Width => texture.Width*Scale;
-        public float Height => texture.Height*Scale;
+        public float Width => Texture.Width*Scale;
+        public float Height => Texture.Height*Scale;
 
         public float Left
         {
@@ -53,7 +53,7 @@ namespace Cryo.Engine
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, Position, null, Color.White, 0f, Vector2.Zero, Scale, SpriteEffects.None, 1f);
+            spriteBatch.Draw(Texture, Position, null, Color.White, 0f, Vector2.Zero, Scale, SpriteEffects.None, 1f);
         }
     }
 }
