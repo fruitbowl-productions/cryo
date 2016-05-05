@@ -15,6 +15,13 @@ namespace Cryo.Engine
             Scale = scale;
         }
 
+        public GameTexture(GameTexture other)
+        {
+            texture = other.texture;
+            Position = other.Position;
+            Scale = other.Scale;
+        }
+
         public float Scale { get; set; }
 
         public float Width => texture.Width*Scale;
