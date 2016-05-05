@@ -1,6 +1,0 @@
-Content\Texture2Ds\Player\Green.xnb
-Content\Texture2Ds\Player\Red.xnb
-Content\Texture2Ds\Player\Blue.xnb
-Content\Texture2Ds\Platform\Red.xnb
-Content\Texture2Ds\Platform\Blue.xnb
-Content\Texture2Ds\Platform\Green.xnb
