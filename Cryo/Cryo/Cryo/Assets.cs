@@ -60,7 +60,9 @@ namespace Cryo
 
         public static class Fonts
         {
-            public static void Initialize() { }
+            public static void Initialize()
+            {
+            }
 
             private static SpriteFont LoadFont(string path)
             {

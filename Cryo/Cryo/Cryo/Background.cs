@@ -40,7 +40,7 @@ namespace Cryo
 
             for (var i = 0; i < ImagesNum; ++i)
             {
-                var tempTexture = new GameTexture(Texture) { Left = currentX };
+                var tempTexture = new GameTexture(Texture) {Left = currentX};
                 images.Add(new Image(tempTexture));
                 currentX -= tempTexture.Width;
             }
@@ -63,4 +63,3 @@ namespace Cryo
         }
     }
 }
-

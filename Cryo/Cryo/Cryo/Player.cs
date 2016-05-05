@@ -8,7 +8,8 @@ namespace Cryo
 {
     public class Player : GameElement, IColorChange
     {
-        public Player(ColorChangeComponent.PlatformColor startingColor, Texture2D redTexture, Texture2D greenTexture, Texture2D blueTexture, Vector2 position, float scale)
+        public Player(ColorChangeComponent.PlatformColor startingColor, Texture2D redTexture, Texture2D greenTexture,
+            Texture2D blueTexture, Vector2 position, float scale)
         {
             Texture = new GameTexture(null, position, scale);
 

@@ -5,12 +5,12 @@ namespace Cryo.Engine
 {
     public class GameTexture
     {
-        public Texture2D Texture;
         public Vector2 Position;
+        public Texture2D Texture;
 
         public GameTexture(Texture2D texture, Vector2 position, float scale)
         {
-            this.Texture = texture;
+            Texture = texture;
             Position = position;
             Scale = scale;
         }

@@ -11,14 +11,12 @@ namespace Cryo.Engine.Components.Physics
             Dynamic
         }
 
-        public PhysicsType Physics { get; set; }
-
         public const float Gravity = 10f;
-
-        public Vector2 Velocity;
         public Vector2 Acceleration;
 
-        private IPhysics owner;
+        private readonly IPhysics owner;
+
+        public Vector2 Velocity;
 
         public PhysicsComponent(IPhysics ownerInput, PhysicsType physics)
         {
@@ -28,9 +26,12 @@ namespace Cryo.Engine.Components.Physics
             Physics = physics;
         }
 
+        public PhysicsType Physics { get; set; }
+
         public override void Update(GameTime gameTime)
         {
-            owner.SetPosition(owner.GetPosition() + Velocity*new Vector2((float) gameTime.ElapsedGameTime.TotalMilliseconds));
+            owner.SetPosition(owner.GetPosition() +
+                              Velocity*new Vector2((float) gameTime.ElapsedGameTime.TotalMilliseconds));
             Velocity += Acceleration*new Vector2((float) gameTime.ElapsedGameTime.TotalMilliseconds);
 
             switch (Physics)

@@ -17,11 +17,8 @@ namespace Cryo.Engine.Components.ColorChange
 
         private readonly Dictionary<PlatformColor, Texture2D> textures;
 
-        private PlatformColor Color { get; set; }
-
-        private Texture2D CurrentTexture2D => textures[Color];
-
-        public ColorChangeComponent(IColorChange ownerInput, Texture2D redTexture, Texture2D greenTexture, Texture2D blueTexture, PlatformColor startingColor)
+        public ColorChangeComponent(IColorChange ownerInput, Texture2D redTexture, Texture2D greenTexture,
+            Texture2D blueTexture, PlatformColor startingColor)
         {
             owner = ownerInput;
             textures = new Dictionary<PlatformColor, Texture2D>
@@ -33,6 +30,12 @@ namespace Cryo.Engine.Components.ColorChange
             ownerInput.SetTexture2D(CurrentTexture2D);
         }
 
-        public override void Update(GameTime gameTime) { }
+        private PlatformColor Color { get; set; }
+
+        private Texture2D CurrentTexture2D => textures[Color];
+
+        public override void Update(GameTime gameTime)
+        {
+        }
     }
 }

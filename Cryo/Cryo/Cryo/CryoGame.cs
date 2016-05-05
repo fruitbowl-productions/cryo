@@ -1,24 +1,23 @@
 using System;
 using System.Collections.Generic;
 using Cryo.Engine;
-using Cryo.Engine.Components;
 using Cryo.Engine.Components.ColorChange;
 using Cryo.Engine.Components.Physics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Keyboard = Cryo.Engine.Keyboards.Keyboard;
 
 namespace Cryo
 {
     public class CryoGame : Game
     {
+        public static Queue<Action<SpriteBatch>> DrawActions;
         private readonly GraphicsDeviceManager graphics;
-        private SpriteBatch spriteBatch;
-
-        private Player player;
         private Platform platform;
 
-        public static Queue<Action<SpriteBatch>> DrawActions;
+        private Player player;
+        private SpriteBatch spriteBatch;
 
         public CryoGame()
         {
@@ -41,7 +40,8 @@ namespace Cryo
 
             Assets.Initialize(Content);
 
-            player = new Player(ColorChangeComponent.PlatformColor.Red, Assets.Texture2Ds.Player.Blue, Assets.Texture2Ds.Player.Green, Assets.Texture2Ds.Player.Blue, Vector2.Zero, 1f);
+            player = new Player(ColorChangeComponent.PlatformColor.Red, Assets.Texture2Ds.Player.Blue,
+                Assets.Texture2Ds.Player.Green, Assets.Texture2Ds.Player.Blue, Vector2.Zero, 1f);
             player.FindComponent<PhysicsComponent>().Velocity = new Vector2(0.01f);
 
             platform = new Platform(ColorChangeComponent.PlatformColor.Blue, Assets.Texture2Ds.Platform.Red,
@@ -50,9 +50,9 @@ namespace Cryo
 
         protected override void Update(GameTime gameTime)
         {
-            Engine.Keyboards.Keyboard.Update();
+            Keyboard.Update();
 
-            if (Engine.Keyboards.Keyboard.IsKeyDown(Keys.Escape))
+            if (Keyboard.IsKeyDown(Keys.Escape))
             {
                 Exit();
             }
@@ -67,7 +67,7 @@ namespace Cryo
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-            
+
             player.Draw(spriteBatch);
 
             while (DrawActions.Count != 0)
