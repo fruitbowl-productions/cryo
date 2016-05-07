@@ -1,17 +1,22 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 
 namespace Cryo.Engine.Components
 {
     public abstract class Component
     {
+        private static readonly List<Component> ComponentRegistry = new List<Component>();
+
+        protected Component()
+        {
+            ComponentRegistry.Add(this);
+        }
+
         public virtual void Update(GameTime gameTime)
         {
         }
 
-        public static T FindComponent<T>(List<Component> components) where T : Component
-        {
-            return components.Find(component => component is T) as T;
-        }
+        public static IEnumerable<T> AllComponents<T>() where T : Component => ComponentRegistry.OfType<T>();
     }
 }

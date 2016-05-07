@@ -4,7 +4,9 @@ namespace Cryo.Engine.Components.Physics
 {
     public interface IPhysics
     {
-        Vector2 GetPosition();
-        void SetPosition(Vector2 value);
+        Rectangle GetRectangle();
+        bool CollidesWith(IPhysics other);
+
+        GameTexture GetTexture();
     }
 }

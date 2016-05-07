@@ -42,10 +42,9 @@ namespace Cryo
 
             player = new Player(ColorChangeComponent.PlatformColor.Red, Assets.Texture2Ds.Player.Blue,
                 Assets.Texture2Ds.Player.Green, Assets.Texture2Ds.Player.Blue, Vector2.Zero, 1f);
-            player.FindComponent<PhysicsComponent>().Velocity = new Vector2(0.01f);
 
             platform = new Platform(ColorChangeComponent.PlatformColor.Blue, Assets.Texture2Ds.Platform.Red,
-                Assets.Texture2Ds.Platform.Green, Assets.Texture2Ds.Player.Blue, Vector2.Zero, 1f);
+                Assets.Texture2Ds.Platform.Green, Assets.Texture2Ds.Player.Blue, new Vector2(0f, 250f), 1f);
         }
 
         protected override void Update(GameTime gameTime)
@@ -58,6 +57,7 @@ namespace Cryo
             }
 
             player.Update(gameTime);
+            platform.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -69,6 +69,7 @@ namespace Cryo
             spriteBatch.Begin();
 
             player.Draw(spriteBatch);
+            platform.Draw(spriteBatch);
 
             while (DrawActions.Count != 0)
             {
