@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Cryo.Engine;
-using Cryo.Engine.Components.ColorChange;
-using Cryo.Engine.Components.Physics;
 using Cryo.GameElements;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -13,12 +11,12 @@ namespace Cryo
 {
     public class CryoGame : Game
     {
-        public static Queue<Action<SpriteBatch>> DrawActions;
         private readonly GraphicsDeviceManager graphics;
-        private Platform platform;
 
         private Player player;
         private SpriteBatch spriteBatch;
+
+        public static List<Platform> Platforms;
 
         public CryoGame()
         {
@@ -29,9 +27,7 @@ namespace Cryo
         protected override void Initialize()
         {
             Screen.Initialize(graphics);
-
-            DrawActions = new Queue<Action<SpriteBatch>>();
-
+            
             base.Initialize();
         }
 
@@ -41,11 +37,17 @@ namespace Cryo
 
             Assets.Initialize(Content);
 
-            player = new Player(ColorChangeComponent.PlatformColor.Red, Assets.Texture2Ds.Player.Blue,
-                Assets.Texture2Ds.Player.Green, Assets.Texture2Ds.Player.Blue, Vector2.Zero, 1f);
+            player = new Player(TextureColor.Red, new Dictionary<TextureColor, Texture2D>
+            {
+                {TextureColor.Red, Assets.Texture2Ds.Player.Red},
+                {TextureColor.Green, Assets.Texture2Ds.Player.Green},
+                {TextureColor.Blue, Assets.Texture2Ds.Player.Blue}
+            }, Vector2.Zero, 1f);
 
-            platform = new Platform(ColorChangeComponent.PlatformColor.Blue, Assets.Texture2Ds.Platform.Red,
-                Assets.Texture2Ds.Platform.Green, Assets.Texture2Ds.Player.Blue, new Vector2(0f, 250f), 1f);
+            Platforms = new List<Platform>
+            {
+                new Platform(TextureColor.Blue, new GameTexture(Assets.Texture2Ds.Platforms.Blue, new Vector2(0f, 250f), 1f))
+            };
         }
 
         protected override void Update(GameTime gameTime)
@@ -58,7 +60,6 @@ namespace Cryo
             }
 
             player.Update(gameTime);
-            platform.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -70,11 +71,10 @@ namespace Cryo
             spriteBatch.Begin();
 
             player.Draw(spriteBatch);
-            platform.Draw(spriteBatch);
 
-            while (DrawActions.Count != 0)
+            foreach (var platform in Platforms)
             {
-                DrawActions.Dequeue().Invoke(spriteBatch);
+                platform.Draw(spriteBatch);
             }
 
             spriteBatch.End();

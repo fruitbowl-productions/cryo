@@ -1,25 +1,14 @@
 ﻿using Cryo.Engine;
-using Cryo.Engine.Components.ColorChange;
-using Cryo.Engine.Components.Physics;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-
 namespace Cryo.GameElements
 {
-    public class Platform : GameElement, IColorChange
+    public class Platform : GameElement
     {
-        public Platform(ColorChangeComponent.PlatformColor startingColor, Texture2D redTexture, Texture2D greenTexture,
-            Texture2D blueTexture, Vector2 position, float scale)
-        {
-            Texture = new GameTexture(null, position, scale);
+        public TextureColor Color { get; set; }
 
-            Components.Add(new PhysicsComponent(this, PhysicsComponent.PhysicsType.Static));
-            Components.Add(new ColorChangeComponent(this, redTexture, greenTexture, blueTexture, startingColor));
-        }
-
-        public void SetTexture2D(Texture2D value)
+        public Platform(TextureColor color, GameTexture texture)
         {
-            Texture.Texture = value;
+            Texture = texture;
+            Color = color;
         }
     }
 }

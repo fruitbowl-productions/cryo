@@ -19,13 +19,13 @@ namespace Cryo
         {
             public static void Initialize()
             {
-                Platform.Initialize();
+                Platforms.Initialize();
                 Player.Initialize();
             }
 
             private static Texture2D LoadTexture2D(string path) => content.Load<Texture2D>($"Texture2Ds\\{path}");
 
-            public static class Platform
+            public static class Platforms
             {
                 public static Texture2D Red { get; private set; }
                 public static Texture2D Green { get; private set; }
