@@ -1,6 +1,6 @@
 ﻿using Cryo.Engine;
 
-namespace Cryo
+namespace Cryo.GameElements
 {
     public class Image : GameElement
     {

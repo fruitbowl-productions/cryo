@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Cryo.Engine;
 using Cryo.Engine.Components.ColorChange;
 using Cryo.Engine.Components.Physics;
+using Cryo.GameElements;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;

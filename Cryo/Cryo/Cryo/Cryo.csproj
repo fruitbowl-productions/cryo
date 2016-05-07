@@ -86,10 +86,10 @@
     <Compile Include="Engine\Timers\DelayedTimer.cs" />
     <Compile Include="Engine\Timers\Timer.cs" />
     <Compile Include="Extensions.cs" />
-    <Compile Include="GameElement.cs" />
-    <Compile Include="Image.cs" />
-    <Compile Include="Platform.cs" />
-    <Compile Include="Player.cs" />
+    <Compile Include="GameElements\GameElement.cs" />
+    <Compile Include="GameElements\Image.cs" />
+    <Compile Include="GameElements\Platform.cs" />
+    <Compile Include="GameElements\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="CryoGame.cs" />

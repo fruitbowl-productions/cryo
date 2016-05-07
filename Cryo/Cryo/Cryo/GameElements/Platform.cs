@@ -4,7 +4,7 @@ using Cryo.Engine.Components.Physics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Cryo
+namespace Cryo.GameElements
 {
     public class Platform : GameElement, IColorChange
     {
