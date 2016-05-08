@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Xna.Framework;
 
 namespace Cryo
 {
     public static class Extensions
     {
-        public static IEnumerable<T> ReverseInPlace<T>(this IEnumerable<T> list)
+        public static bool IntersectsOrTouches(this Rectangle a, Rectangle b)
         {
-            var newList = new List<T>(list);
-            newList.Reverse();
-            return newList;
+            if (b.X <= a.X + a.Width && a.X <= b.X + b.Width && b.Y <= a.Y + a.Height)
+                return a.Y <= b.Y + b.Height;
+            return false;
         }
     }
 }

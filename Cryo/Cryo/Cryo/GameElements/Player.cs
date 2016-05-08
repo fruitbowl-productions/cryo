@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Cryo.Engine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Keyboard = Cryo.Engine.Keyboards.Keyboard;
 using System.Linq;
+using Cryo.GameElements.Platforms;
 
 namespace Cryo.GameElements
 {
@@ -90,7 +90,7 @@ namespace Cryo.GameElements
 
         private void CheckCollisions()
         {
-            foreach (var platform in CryoGame.Platforms.Where(CollidesWith))
+            foreach (var platform in PlatformManager.Platforms.Where(CollidesWith))
             {
                 var collision = false;
 

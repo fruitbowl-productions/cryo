@@ -19,6 +19,6 @@ namespace Cryo.GameElements
 
         public virtual Rectangle Rectangle => new Rectangle((int)Texture.Left, (int)Texture.Top, (int)Texture.Width, (int)Texture.Height);
 
-        public bool CollidesWith(GameElement other) => Rectangle.Intersects(other.Rectangle);
+        public bool CollidesWith(GameElement other) => Rectangle.IntersectsOrTouches(other.Rectangle);
     }
 }

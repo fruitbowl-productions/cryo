@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Cryo.Engine;
 using Cryo.GameElements;
+using Cryo.GameElements.Platforms;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -15,8 +16,6 @@ namespace Cryo
 
         private Player player;
         private SpriteBatch spriteBatch;
-
-        public static List<Platform> Platforms;
 
         public CryoGame()
         {
@@ -44,10 +43,10 @@ namespace Cryo
                 {TextureColor.Blue, Assets.Texture2Ds.Player.Blue}
             }, Vector2.Zero, 1f);
 
-            Platforms = new List<Platform>
-            {
-                new Platform(TextureColor.Blue, new GameTexture(Assets.Texture2Ds.Platforms.Blue, new Vector2(0f, 250f), 1f))
-            };
+            PlatformManager.Platforms.Add(
+                new Platform(TextureColor.Blue,
+                    new GameTexture(Assets.Texture2Ds.Platforms.Blue, new Vector2(0f, 250f), 1f))
+                );
         }
 
         protected override void Update(GameTime gameTime)
@@ -72,10 +71,7 @@ namespace Cryo
 
             player.Draw(spriteBatch);
 
-            foreach (var platform in Platforms)
-            {
-                platform.Draw(spriteBatch);
-            }
+            PlatformManager.Draw(spriteBatch);
 
             spriteBatch.End();
 

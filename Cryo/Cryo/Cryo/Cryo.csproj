@@ -86,7 +86,8 @@
     <Compile Include="Extensions.cs" />
     <Compile Include="GameElements\GameElement.cs" />
     <Compile Include="GameElements\Image.cs" />
-    <Compile Include="GameElements\Platform.cs" />
+    <Compile Include="GameElements\Platforms\Platform.cs" />
+    <Compile Include="GameElements\Platforms\PlatformManager.cs" />
     <Compile Include="GameElements\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
