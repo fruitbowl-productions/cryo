@@ -6,11 +6,11 @@ namespace Cryo.Engine.Keyboards
     {
         private readonly Keys key;
 
-        public bool IsDown => Keyboard.IsKeyDown(key);
-
         public Control(Keys keyInput)
         {
             key = keyInput;
         }
+
+        public bool IsDown => Keyboard.IsKeyDown(key);
     }
 }

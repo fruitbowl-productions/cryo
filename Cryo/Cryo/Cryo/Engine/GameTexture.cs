@@ -24,7 +24,7 @@ namespace Cryo.Engine
 
         public float Scale { get; set; }
 
-        public float  Width => Texture.Width*Scale;
+        public float Width => Texture.Width*Scale;
         public float Height => Texture.Height*Scale;
 
         public float Left

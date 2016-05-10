@@ -1,5 +1,3 @@
-using Microsoft.Xna.Framework;
-
 namespace Cryo
 {
 #if WINDOWS || XBOX

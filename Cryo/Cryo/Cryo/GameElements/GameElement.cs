@@ -8,6 +8,9 @@ namespace Cryo.GameElements
     {
         public GameTexture Texture { get; set; }
 
+        public virtual Rectangle Rectangle
+            => new Rectangle((int) Texture.Left, (int) Texture.Top, (int) Texture.Width, (int) Texture.Height);
+
         public virtual void Update(GameTime gameTime)
         {
         }
@@ -16,8 +19,6 @@ namespace Cryo.GameElements
         {
             Texture.Draw(spriteBatch);
         }
-
-        public virtual Rectangle Rectangle => new Rectangle((int)Texture.Left, (int)Texture.Top, (int)Texture.Width, (int)Texture.Height);
 
         public bool CollidesWith(GameElement other) => Rectangle.IntersectsOrTouches(other.Rectangle);
     }

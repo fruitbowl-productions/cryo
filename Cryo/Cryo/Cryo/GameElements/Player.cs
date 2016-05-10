@@ -1,45 +1,32 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Cryo.Engine;
+using Cryo.Engine.Keyboards;
+using Cryo.GameElements.Platforms;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System.Linq;
-using Cryo.Engine.Keyboards;
-using Cryo.GameElements.Platforms;
 
 namespace Cryo.GameElements
 {
     public class Player : GameElement
     {
+        private const float HorizontalMoveSpeed = 0.15f;
+        private const float JumpSpeed = 0.075f;
+        private const float Gravity = 0.004f;
+
         private readonly Control jumpControl;
         private readonly Control leftControl;
         private readonly Control rightControl;
 
-        private bool CanJump { get; set; }
+        private readonly Dictionary<TextureColor, Texture2D> textures;
+
+        private TextureColor color;
 
         private Vector2 velocity;
 
-        private const float HorizontalMoveSpeed = 0.15f;
-
-        private const float JumpSpeed = 0.075f;
-        private const float Gravity = 0.004f;
-
-        private TextureColor color;
-        public TextureColor Color
-        {
-            get { return color; }
-            set
-            {
-                color = value;
-                Texture = new GameTexture(CurrentTexture2D, Texture.Position, Texture.Scale);
-            }
-        }
-
-        private readonly Dictionary<TextureColor, Texture2D> textures;
-
-        private Texture2D CurrentTexture2D => textures[Color];
-
-        public Player(TextureColor startingColor, Dictionary<TextureColor, Texture2D> texturesInput, Vector2 position, float scale)
+        public Player(TextureColor startingColor, Dictionary<TextureColor, Texture2D> texturesInput, Vector2 position,
+            float scale)
         {
             Texture = new GameTexture(null, position, scale);
 
@@ -54,6 +41,20 @@ namespace Cryo.GameElements
             leftControl = new Control(Keys.A);
             rightControl = new Control(Keys.D);
         }
+
+        private bool CanJump { get; set; }
+
+        public TextureColor Color
+        {
+            get { return color; }
+            set
+            {
+                color = value;
+                Texture = new GameTexture(CurrentTexture2D, Texture.Position, Texture.Scale);
+            }
+        }
+
+        private Texture2D CurrentTexture2D => textures[Color];
 
         public override void Update(GameTime gameTime)
         {
@@ -71,7 +72,7 @@ namespace Cryo.GameElements
             {
                 Jump();
             }
-            
+
             if (leftControl.IsDown)
             {
                 velocity.X = -HorizontalMoveSpeed;

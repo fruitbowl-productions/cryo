@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Cryo.Engine;
 using Cryo.GameElements;
@@ -26,7 +25,7 @@ namespace Cryo
         protected override void Initialize()
         {
             Screen.Initialize(graphics);
-            
+
             base.Initialize();
         }
 
