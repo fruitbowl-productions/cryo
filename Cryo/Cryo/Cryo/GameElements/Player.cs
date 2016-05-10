@@ -3,22 +3,26 @@ using Cryo.Engine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Keyboard = Cryo.Engine.Keyboards.Keyboard;
 using System.Linq;
+using Cryo.Engine.Keyboards;
 using Cryo.GameElements.Platforms;
 
 namespace Cryo.GameElements
 {
     public class Player : GameElement
     {
-        private bool jumping;
+        private readonly Control jumpControl;
+        private readonly Control leftControl;
+        private readonly Control rightControl;
+
+        private bool CanJump { get; set; }
 
         private Vector2 velocity;
 
-        private const float HorizontalMoveSpeed = 0.001f;
+        private const float HorizontalMoveSpeed = 0.15f;
 
-        private const float JumpSpeed = 0.125f;
-        private const float Gravity = 0.001f;
+        private const float JumpSpeed = 0.075f;
+        private const float Gravity = 0.004f;
 
         private TextureColor color;
         public TextureColor Color
@@ -37,59 +41,71 @@ namespace Cryo.GameElements
 
         public Player(TextureColor startingColor, Dictionary<TextureColor, Texture2D> texturesInput, Vector2 position, float scale)
         {
-            jumping = false;
-
             Texture = new GameTexture(null, position, scale);
 
             textures = texturesInput;
             Color = startingColor;
 
+            CanJump = false;
+
             velocity = Vector2.Zero;
+
+            jumpControl = new Control(Keys.Space);
+            leftControl = new Control(Keys.A);
+            rightControl = new Control(Keys.D);
         }
 
         public override void Update(GameTime gameTime)
         {
-            if (Keyboard.IsKeyDown(Keys.Space))
-            {
-                Jump(gameTime);
-            }
+            HandleUserInput();
+            UpdateGravity();
+            ApplyVelocity(gameTime);
+            CheckCollisions();
+            Screen.Constrain(Texture);
+            base.Update(gameTime);
+        }
 
-            UpdateGravity(gameTime);
-
-            if (Keyboard.IsKeyDown(Keys.A))
+        private void HandleUserInput()
+        {
+            if (jumpControl.IsDown)
             {
-                velocity.X = -HorizontalMoveSpeed*(float) gameTime.ElapsedGameTime.TotalMilliseconds;
+                Jump();
             }
-            else if (Keyboard.IsKeyDown(Keys.D))
+            
+            if (leftControl.IsDown)
             {
-                velocity.X = HorizontalMoveSpeed*(float) gameTime.ElapsedGameTime.TotalMilliseconds;
+                velocity.X = -HorizontalMoveSpeed;
+            }
+            else if (rightControl.IsDown)
+            {
+                velocity.X = HorizontalMoveSpeed;
             }
             else
             {
                 velocity.X = 0f;
             }
-
-            Texture.Position += velocity;
-
-            CheckCollisions();
-
-            base.Update(gameTime);
         }
 
-        private void UpdateGravity(GameTime gameTime)
+        private void UpdateGravity()
         {
-            velocity.Y += Gravity * (float) gameTime.ElapsedGameTime.TotalMilliseconds;
+            velocity.Y += Gravity;
         }
 
-        private void Jump(GameTime gameTime)
+        private void ApplyVelocity(GameTime gameTime)
         {
-            if (jumping) return;
-            jumping = true;
-            velocity.Y -= JumpSpeed * (float) gameTime.ElapsedGameTime.TotalMilliseconds;
+            Texture.Position += velocity*(float) gameTime.ElapsedGameTime.TotalMilliseconds;
+        }
+
+        private void Jump()
+        {
+            if (!CanJump) return;
+            velocity.Y -= JumpSpeed;
         }
 
         private void CheckCollisions()
         {
+            CanJump = false;
+
             foreach (var platform in PlatformManager.Platforms.Where(CollidesWith))
             {
                 var collision = false;
@@ -109,11 +125,10 @@ namespace Cryo.GameElements
                     Texture.Bottom = platform.Texture.Top;
                     collision = true;
                 }
-                
-                if (collision)
-                {
-                    velocity.Y = 0f;
-                }
+
+                if (!collision) continue;
+                CanJump = true;
+                velocity.Y = 0f;
             }
         }
     }

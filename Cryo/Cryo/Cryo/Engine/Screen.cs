@@ -40,5 +40,11 @@ namespace Cryo.Engine
         {
             graphicsDeviceManager = graphicsDeviceManagerInput;
         }
+
+        public static void Constrain(GameTexture texture)
+        {
+            texture.Position.X = MathHelper.Clamp(texture.Position.X, 0, Width - texture.Width);
+            texture.Position.Y = MathHelper.Clamp(texture.Position.Y, 0, Height - texture.Height);
+        }
     }
 }

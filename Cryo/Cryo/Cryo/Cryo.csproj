@@ -78,6 +78,7 @@
     <Compile Include="Assets.cs" />
     <Compile Include="Background.cs" />
     <Compile Include="Engine\GameTexture.cs" />
+    <Compile Include="Engine\Keyboards\Control.cs" />
     <Compile Include="Engine\Keyboards\DelayedKeyboard.cs" />
     <Compile Include="Engine\Keyboards\Keyboard.cs" />
     <Compile Include="Engine\Screen.cs" />
