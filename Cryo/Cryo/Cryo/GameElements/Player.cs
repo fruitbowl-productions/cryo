@@ -11,13 +11,10 @@ namespace Cryo.GameElements
 {
     public class Player : GameElement
     {
-        private const float HorizontalMoveSpeed = 0.15f;
-        private const float JumpSpeed = 0.075f;
-        private const float Gravity = 0.004f;
+        private const float JumpSpeed = 0.25f;
+        private const float Gravity = 0.01f;
 
         private readonly Control jumpControl;
-        private readonly Control leftControl;
-        private readonly Control rightControl;
 
         private readonly Dictionary<TextureColor, Texture2D> textures;
 
@@ -38,8 +35,6 @@ namespace Cryo.GameElements
             velocity = Vector2.Zero;
 
             jumpControl = new Control(Keys.Space);
-            leftControl = new Control(Keys.A);
-            rightControl = new Control(Keys.D);
         }
 
         private bool CanJump { get; set; }
@@ -71,19 +66,6 @@ namespace Cryo.GameElements
             if (jumpControl.IsDown)
             {
                 Jump();
-            }
-
-            if (leftControl.IsDown)
-            {
-                velocity.X = -HorizontalMoveSpeed;
-            }
-            else if (rightControl.IsDown)
-            {
-                velocity.X = HorizontalMoveSpeed;
-            }
-            else
-            {
-                velocity.X = 0f;
             }
         }
 

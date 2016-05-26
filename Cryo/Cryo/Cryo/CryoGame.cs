@@ -42,10 +42,9 @@ namespace Cryo
                 {TextureColor.Blue, Assets.Texture2Ds.Player.Blue}
             }, Vector2.Zero, 1f);
 
-            PlatformManager.Platforms.Add(
-                new Platform(TextureColor.Blue,
-                    new GameTexture(Assets.Texture2Ds.Platforms.Blue, new Vector2(0f, 250f), 1f))
-                );
+            PlatformManager.AddPlatform(TextureColor.Blue);
+            PlatformManager.AddPlatform(TextureColor.Green);
+            PlatformManager.AddPlatform(TextureColor.Red);
         }
 
         protected override void Update(GameTime gameTime)
@@ -58,6 +57,8 @@ namespace Cryo
             }
 
             player.Update(gameTime);
+
+            PlatformManager.Update(gameTime);
 
             base.Update(gameTime);
         }
