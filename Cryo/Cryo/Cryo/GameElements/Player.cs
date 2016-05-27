@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Cryo.Engine;
 using Cryo.Engine.Keyboards;
@@ -22,6 +23,8 @@ namespace Cryo.GameElements
 
         private Vector2 velocity;
 
+        public bool Alive { get; private set; }
+
         public Player(TextureColor startingColor, Dictionary<TextureColor, Texture2D> texturesInput, Vector2 position,
             float scale)
         {
@@ -35,6 +38,8 @@ namespace Cryo.GameElements
             velocity = Vector2.Zero;
 
             jumpControl = new Control(Keys.Space);
+
+            Alive = true;
         }
 
         private bool CanJump { get; set; }
@@ -54,10 +59,17 @@ namespace Cryo.GameElements
         public override void Update(GameTime gameTime)
         {
             HandleUserInput();
+
             UpdateGravity();
+
             ApplyVelocity(gameTime);
+
             CheckCollisions();
+
+            CheckFall();
+
             Screen.Constrain(Texture);
+
             base.Update(gameTime);
         }
 
@@ -112,6 +124,22 @@ namespace Cryo.GameElements
                 if (!collision) continue;
                 CanJump = true;
                 velocity.Y = 0f;
+            }
+        }
+
+        private void CheckFall()
+        {
+            if (Texture.Bottom >= Screen.Height)
+            {
+                Alive = false;
+            }
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            if (Alive)
+            {
+                base.Draw(spriteBatch);
             }
         }
     }
