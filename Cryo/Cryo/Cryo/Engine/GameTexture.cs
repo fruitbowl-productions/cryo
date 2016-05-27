@@ -8,11 +8,12 @@ namespace Cryo.Engine
         public Vector2 Position;
         public Texture2D Texture;
 
-        public GameTexture(Texture2D texture, Vector2 position, float scale)
+        public GameTexture(Texture2D texture, Vector2 position, float scale, float rotation)
         {
             Texture = texture;
             Position = position;
             Scale = scale;
+            Rotation = rotation;
         }
 
         public GameTexture(GameTexture other)
@@ -23,6 +24,7 @@ namespace Cryo.Engine
         }
 
         public float Scale { get; set; }
+        public float Rotation { get; set; }
 
         public float Width => Texture.Width*Scale;
         public float Height => Texture.Height*Scale;
@@ -53,7 +55,13 @@ namespace Cryo.Engine
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Position, null, Color.White, 0f, Vector2.Zero, Scale, SpriteEffects.None, 1f);
+            spriteBatch.Draw(Texture, Position, null, Color.White, Rotation, Vector2.Zero, Scale, SpriteEffects.None, 1f);
+        }
+
+        public void HorizontalToVertical()
+        {
+            Rotation = 90f;
+            Top = Bottom + Width;
         }
     }
 }

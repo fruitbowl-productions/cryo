@@ -42,9 +42,9 @@ namespace Cryo
                 {TextureColor.Blue, Assets.Texture2Ds.Player.Blue}
             }, Vector2.Zero, 1f);
 
-            PlatformManager.AddPlatform(TextureColor.Blue);
-            PlatformManager.AddPlatform(TextureColor.Green);
-            PlatformManager.AddPlatform(TextureColor.Red);
+            PlatformManager.AddPlatform(TextureColor.Blue, Platform.Orientation.Horizontal);
+            PlatformManager.AddPlatform(TextureColor.Green, Platform.Orientation.Horizontal);
+            PlatformManager.AddPlatform(TextureColor.Red, Platform.Orientation.Horizontal);
         }
 
         protected override void Update(GameTime gameTime)

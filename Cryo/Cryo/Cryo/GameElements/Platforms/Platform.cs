@@ -9,7 +9,15 @@ namespace Cryo.GameElements.Platforms
     {
         private readonly Dictionary<TextureColor, Texture2D> textures;
 
-        public Platform(TextureColor color, Vector2 position, float scale)
+        public enum Orientation
+        {
+            Horizontal,
+            Vertical
+        }
+
+        private readonly Orientation orientation;
+        
+        public Platform(TextureColor color, Vector2 position, float scale, Orientation orientation)
         {
             textures = new Dictionary<TextureColor, Texture2D>
             {
@@ -18,9 +26,16 @@ namespace Cryo.GameElements.Platforms
                 {TextureColor.Blue, Assets.Texture2Ds.Platforms.Blue}
             };
 
-            Texture = new GameTexture(textures[color], position, scale);
+            Texture = new GameTexture(textures[color], position, scale, 0f);
             
             Color = color;
+
+            this.orientation = orientation;
+
+            if (orientation == Orientation.Vertical)
+            {
+                Texture.HorizontalToVertical();
+            }
         }
 
         public TextureColor Color { get; set; }

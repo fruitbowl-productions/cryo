@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -10,7 +11,7 @@ namespace Cryo.GameElements.Platforms
 
         private const float PlatformHorizontalOffset = 10f;
         private const float PlatformVerticalLocation = 300f;
-        private const float PlatformHorizontalSpeed = -1f;
+        private const float PlatformHorizontalSpeed = -50f;
 
         private static float NextHorizontalPosition
         {
@@ -25,16 +26,16 @@ namespace Cryo.GameElements.Platforms
             }
         }
 
-        public static void AddPlatform(TextureColor color)
+        public static void AddPlatform(TextureColor color, Platform.Orientation orientation)
         {
-            Platforms.Add(new Platform(color, new Vector2(NextHorizontalPosition, PlatformVerticalLocation), 1f));
+            Platforms.Add(new Platform(color, new Vector2(NextHorizontalPosition, PlatformVerticalLocation), 1f, orientation));
         }
 
         public static void Update(GameTime gameTime)
         {
             foreach (var platform in Platforms)
             {
-                platform.Texture.Position.X += PlatformHorizontalSpeed;
+                platform.Texture.Position.X += PlatformHorizontalSpeed * (float) gameTime.ElapsedGameTime.TotalSeconds;
             }
 
             PruneInactivePlatforms();

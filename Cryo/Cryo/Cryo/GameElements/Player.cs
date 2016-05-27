@@ -12,8 +12,8 @@ namespace Cryo.GameElements
 {
     public class Player : GameElement
     {
-        private const float JumpSpeed = 0.25f;
-        private const float Gravity = 0.01f;
+        private const float JumpSpeed = 200f;
+        private const float Gravity = 200f;
 
         private readonly Control jumpControl;
 
@@ -28,7 +28,7 @@ namespace Cryo.GameElements
         public Player(TextureColor startingColor, Dictionary<TextureColor, Texture2D> texturesInput, Vector2 position,
             float scale)
         {
-            Texture = new GameTexture(null, position, scale);
+            Texture = new GameTexture(null, position, scale, 0f);
 
             textures = texturesInput;
             Color = startingColor;
@@ -50,7 +50,7 @@ namespace Cryo.GameElements
             set
             {
                 color = value;
-                Texture = new GameTexture(CurrentTexture2D, Texture.Position, Texture.Scale);
+                Texture = new GameTexture(CurrentTexture2D, Texture.Position, Texture.Scale, 0f);
             }
         }
 
@@ -60,9 +60,7 @@ namespace Cryo.GameElements
         {
             HandleUserInput();
 
-            UpdateGravity();
-
-            ApplyVelocity(gameTime);
+            UpdatePhysics(gameTime);
 
             CheckCollisions();
 
@@ -81,14 +79,20 @@ namespace Cryo.GameElements
             }
         }
 
-        private void UpdateGravity()
+        private void UpdatePhysics(GameTime gameTime)
         {
-            velocity.Y += Gravity;
+            UpdateGravity(gameTime);
+            ApplyVelocity(gameTime);
+        }
+
+        private void UpdateGravity(GameTime gameTime)
+        {
+            velocity.Y += Gravity*(float) gameTime.ElapsedGameTime.TotalSeconds;
         }
 
         private void ApplyVelocity(GameTime gameTime)
         {
-            Texture.Position += velocity*(float) gameTime.ElapsedGameTime.TotalMilliseconds;
+            Texture.Position += velocity*(float) gameTime.ElapsedGameTime.TotalSeconds;
         }
 
         private void Jump()
