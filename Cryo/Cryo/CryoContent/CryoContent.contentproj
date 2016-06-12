@@ -51,42 +51,42 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Texture2Ds\Platforms\Red\Horizontal.jpg">
+    <Compile Include="Texture2Ds\Platforms\Blue\Horizontal.png">
       <Name>Horizontal</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Texture2Ds\Platforms\Blue\Horizontal.jpg">
+    <Compile Include="Texture2Ds\Platforms\Green\Horizontal.png">
       <Name>Horizontal</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Texture2Ds\Platforms\Green\Horizontal.jpg">
+    <Compile Include="Texture2Ds\Platforms\Red\Horizontal.png">
       <Name>Horizontal</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Texture2Ds\Platforms\Red\Vertical.jpg">
+    <Compile Include="Texture2Ds\Platforms\Blue\Vertical.png">
       <Name>Vertical</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Texture2Ds\Platforms\Green\Vertical.jpg">
+    <Compile Include="Texture2Ds\Platforms\Green\Vertical.png">
       <Name>Vertical</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Texture2Ds\Platforms\Blue\Vertical.jpg">
+    <Compile Include="Texture2Ds\Platforms\Red\Vertical.png">
       <Name>Vertical</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>

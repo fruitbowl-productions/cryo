@@ -8,13 +8,13 @@ namespace Cryo.GameElements.Platforms
     public static class PlatformManager
     {
         private const float PlatformHorizontalOffset = 10f;
-        private static float PlatformVerticalBottom;
+        private static float platformVerticalBottom;
         private const float PlatformHorizontalSpeed = -50f;
         public static List<Platform> Platforms { get; private set; } = new List<Platform>();
 
         public static void Initialize()
         {
-            PlatformVerticalBottom = Screen.Height*3f/4f;
+            platformVerticalBottom = Screen.Height*3f/4f;
         }
 
         private static float NextHorizontalPosition
@@ -32,9 +32,9 @@ namespace Cryo.GameElements.Platforms
 
         public static void AddPlatform(TextureColor color, Platform.OrientationType orientation)
         {
-            var platform = new Platform(color, new Vector2(NextHorizontalPosition, 0f), 1f, orientation)
+            var platform = new Platform(color, new Vector2(NextHorizontalPosition, 0f), 0.5f, orientation)
             {
-                Texture = {Bottom = PlatformVerticalBottom}
+                Texture = {Bottom = platformVerticalBottom}
             };
             Platforms.Add(platform);
         }
