@@ -7,35 +7,47 @@ namespace Cryo.GameElements.Platforms
 {
     public class Platform : GameElement
     {
-        private readonly Dictionary<TextureColor, Texture2D> textures;
-
-        public enum Orientation
+        public enum OrientationType
         {
             Horizontal,
             Vertical
         }
 
-        private readonly Orientation orientation;
-        
-        public Platform(TextureColor color, Vector2 position, float scale, Orientation orientation)
+        public OrientationType Orientation { get; private set; }
+
+        public Platform(TextureColor color, Vector2 position, float scale, OrientationType orientation)
         {
-            textures = new Dictionary<TextureColor, Texture2D>
+            var textures = new Dictionary<TextureColor, Dictionary<OrientationType, Texture2D>>
             {
-                {TextureColor.Red, Assets.Texture2Ds.Platforms.Red},
-                {TextureColor.Green, Assets.Texture2Ds.Platforms.Green},
-                {TextureColor.Blue, Assets.Texture2Ds.Platforms.Blue}
+                {
+                    TextureColor.Red,
+                    new Dictionary<OrientationType, Texture2D>
+                    {
+                        {OrientationType.Horizontal, Assets.Texture2Ds.Platforms.Red.Horizontal},
+                        {OrientationType.Vertical, Assets.Texture2Ds.Platforms.Red.Vertical}
+                    }
+                },
+                {
+                    TextureColor.Green,
+                    new Dictionary<OrientationType, Texture2D>
+                    {
+                        {OrientationType.Horizontal, Assets.Texture2Ds.Platforms.Green.Horizontal},
+                        {OrientationType.Vertical, Assets.Texture2Ds.Platforms.Green.Vertical}
+                    }
+                },
+                {
+                    TextureColor.Blue,
+                    new Dictionary<OrientationType, Texture2D>
+                    {
+                        {OrientationType.Horizontal, Assets.Texture2Ds.Platforms.Blue.Horizontal},
+                        {OrientationType.Vertical, Assets.Texture2Ds.Platforms.Blue.Vertical}
+                    }
+                }
             };
+            Texture = new GameTexture(textures[color][orientation], position, scale, 0f);
 
-            Texture = new GameTexture(textures[color], position, scale, 0f);
-            
             Color = color;
-
-            this.orientation = orientation;
-
-            if (orientation == Orientation.Vertical)
-            {
-                Texture.HorizontalToVertical();
-            }
+            Orientation = orientation;
         }
 
         public TextureColor Color { get; set; }

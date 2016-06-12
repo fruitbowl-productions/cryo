@@ -27,18 +27,59 @@ namespace Cryo
 
             public static class Platforms
             {
-                public static Texture2D Red { get; private set; }
-                public static Texture2D Green { get; private set; }
-                public static Texture2D Blue { get; private set; }
-
                 public static void Initialize()
                 {
-                    Red = LoadPlatformTexture2D("Red");
-                    Green = LoadPlatformTexture2D("Green");
-                    Blue = LoadPlatformTexture2D("Blue");
+                    Red.Initialize();
+                    Green.Initialize();
+                    Blue.Initialize();
                 }
 
-                private static Texture2D LoadPlatformTexture2D(string path) => LoadTexture2D($"Platform\\{path}");
+                private static Texture2D LoadPlatformTexture2D(string path) => LoadTexture2D($"Platforms\\{path}");
+
+                public static class Red
+                {
+                    public static Texture2D Horizontal { get; private set; }
+                    public static Texture2D Vertical { get; private set; }
+
+                    public static void Initialize()
+                    {
+                        Horizontal = LoadRedPlatformTexture2D("Horizontal");
+                        Vertical = LoadRedPlatformTexture2D("Vertical");
+                    }
+
+                    private static Texture2D LoadRedPlatformTexture2D(string path)
+                        => LoadPlatformTexture2D($"Red\\{path}");
+                }
+
+                public static class Green
+                {
+                    public static Texture2D Horizontal { get; private set; }
+                    public static Texture2D Vertical { get; private set; }
+
+                    public static void Initialize()
+                    {
+                        Horizontal = LoadGreenPlatformTexture2D("Horizontal");
+                        Vertical = LoadGreenPlatformTexture2D("Vertical");
+                    }
+
+                    private static Texture2D LoadGreenPlatformTexture2D(string path)
+                        => LoadPlatformTexture2D($"Green\\{path}");
+                }
+
+                public static class Blue
+                {
+                    public static Texture2D Horizontal { get; private set; }
+                    public static Texture2D Vertical { get; private set; }
+
+                    public static void Initialize()
+                    {
+                        Horizontal = LoadBluePlatformTexture2D("Horizontal");
+                        Vertical = LoadBluePlatformTexture2D("Vertical");
+                    }
+
+                    private static Texture2D LoadBluePlatformTexture2D(string path)
+                        => LoadPlatformTexture2D($"Blue\\{path}");
+                }
             }
 
             public static class Player

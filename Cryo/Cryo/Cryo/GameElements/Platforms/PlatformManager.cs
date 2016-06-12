@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Cryo.Engine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -7,11 +7,15 @@ namespace Cryo.GameElements.Platforms
 {
     public static class PlatformManager
     {
-        public static List<Platform> Platforms { get; set; } = new List<Platform>();
-
         private const float PlatformHorizontalOffset = 10f;
-        private const float PlatformVerticalLocation = 300f;
+        private static float PlatformVerticalBottom;
         private const float PlatformHorizontalSpeed = -50f;
+        public static List<Platform> Platforms { get; private set; } = new List<Platform>();
+
+        public static void Initialize()
+        {
+            PlatformVerticalBottom = Screen.Height*3f/4f;
+        }
 
         private static float NextHorizontalPosition
         {
@@ -26,16 +30,20 @@ namespace Cryo.GameElements.Platforms
             }
         }
 
-        public static void AddPlatform(TextureColor color, Platform.Orientation orientation)
+        public static void AddPlatform(TextureColor color, Platform.OrientationType orientation)
         {
-            Platforms.Add(new Platform(color, new Vector2(NextHorizontalPosition, PlatformVerticalLocation), 1f, orientation));
+            var platform = new Platform(color, new Vector2(NextHorizontalPosition, 0f), 1f, orientation)
+            {
+                Texture = {Bottom = PlatformVerticalBottom}
+            };
+            Platforms.Add(platform);
         }
 
         public static void Update(GameTime gameTime)
         {
             foreach (var platform in Platforms)
             {
-                platform.Texture.Position.X += PlatformHorizontalSpeed * (float) gameTime.ElapsedGameTime.TotalSeconds;
+                platform.Texture.Position.X += PlatformHorizontalSpeed*(float) gameTime.ElapsedGameTime.TotalSeconds;
             }
 
             PruneInactivePlatforms();

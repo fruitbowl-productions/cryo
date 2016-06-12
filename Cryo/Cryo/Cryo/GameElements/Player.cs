@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Cryo.Engine;
 using Cryo.Engine.Keyboards;
@@ -12,8 +11,8 @@ namespace Cryo.GameElements
 {
     public class Player : GameElement
     {
-        private const float JumpSpeed = 200f;
-        private const float Gravity = 200f;
+        private const float JumpSpeed = 300f;
+        private const float Gravity = 500f;
 
         private readonly Control jumpControl;
 
@@ -22,8 +21,6 @@ namespace Cryo.GameElements
         private TextureColor color;
 
         private Vector2 velocity;
-
-        public bool Alive { get; private set; }
 
         public Player(TextureColor startingColor, Dictionary<TextureColor, Texture2D> texturesInput, Vector2 position,
             float scale)
@@ -41,6 +38,8 @@ namespace Cryo.GameElements
 
             Alive = true;
         }
+
+        public bool Alive { get; private set; }
 
         private bool CanJump { get; set; }
 
@@ -109,25 +108,28 @@ namespace Cryo.GameElements
             {
                 var collision = false;
 
-                var topInsideOther = Texture.Top <= platform.Texture.Bottom;
-                var bottomOutsideOther = Texture.Bottom >= platform.Texture.Bottom;
-                if (topInsideOther && bottomOutsideOther)
+                switch (platform.Orientation)
                 {
-                    Texture.Top = platform.Texture.Bottom;
-                    collision = true;
-                }
+                    case Platform.OrientationType.Horizontal:
+                        var topOutsideOther = Texture.Top <= platform.Texture.Top;
+                        var bottomInsideOther = Texture.Bottom >= platform.Texture.Top;
+                        if (topOutsideOther && bottomInsideOther)
+                        {
+                            Texture.Bottom = platform.Texture.Top;
+                            collision = true;
+                        }
 
-                var topOutsideOther = Texture.Top <= platform.Texture.Top;
-                var bottomInsideOther = Texture.Bottom >= platform.Texture.Top;
-                if (topOutsideOther && bottomInsideOther)
-                {
-                    Texture.Bottom = platform.Texture.Top;
-                    collision = true;
-                }
+                        if (!collision) continue;
+                        CanJump = true;
+                        velocity.Y = 0f;
 
-                if (!collision) continue;
-                CanJump = true;
-                velocity.Y = 0f;
+                        break;
+                    case Platform.OrientationType.Vertical:
+                        Alive = false;
+                        break;
+                    default:
+                        throw new System.ArgumentOutOfRangeException();
+                }
             }
         }
 

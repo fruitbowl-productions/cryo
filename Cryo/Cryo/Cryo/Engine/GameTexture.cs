@@ -55,13 +55,7 @@ namespace Cryo.Engine
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Position, null, Color.White, Rotation, Vector2.Zero, Scale, SpriteEffects.None, 1f);
-        }
-
-        public void HorizontalToVertical()
-        {
-            Rotation = 90f;
-            Top = Bottom + Width;
+            spriteBatch.Draw(Texture, Position, null, Color.White, 0f, Vector2.Zero, Scale, SpriteEffects.None, 1f);
         }
     }
 }

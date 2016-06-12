@@ -24,9 +24,17 @@ namespace Cryo
 
         protected override void Initialize()
         {
-            Screen.Initialize(graphics);
+            SetupScreen();
+            PlatformManager.Initialize();
 
             base.Initialize();
+        }
+
+        private void SetupScreen()
+        {
+            Screen.Initialize(graphics);
+            Screen.Height = 500;
+            Screen.Width = 900;
         }
 
         protected override void LoadContent()
@@ -40,11 +48,11 @@ namespace Cryo
                 {TextureColor.Red, Assets.Texture2Ds.Player.Red},
                 {TextureColor.Green, Assets.Texture2Ds.Player.Green},
                 {TextureColor.Blue, Assets.Texture2Ds.Player.Blue}
-            }, Vector2.Zero, 1f);
+            }, new Vector2(100f, 0f), 1f);
 
-            PlatformManager.AddPlatform(TextureColor.Blue, Platform.Orientation.Horizontal);
-            PlatformManager.AddPlatform(TextureColor.Green, Platform.Orientation.Horizontal);
-            PlatformManager.AddPlatform(TextureColor.Red, Platform.Orientation.Horizontal);
+            PlatformManager.AddPlatform(TextureColor.Blue, Platform.OrientationType.Horizontal);
+            PlatformManager.AddPlatform(TextureColor.Green, Platform.OrientationType.Horizontal);
+            PlatformManager.AddPlatform(TextureColor.Red, Platform.OrientationType.Vertical);
         }
 
         protected override void Update(GameTime gameTime)
