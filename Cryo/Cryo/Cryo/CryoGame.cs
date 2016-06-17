@@ -43,12 +43,7 @@ namespace Cryo
 
             Assets.Initialize(Content);
 
-            player = new Player(TextureColor.Red, new Dictionary<TextureColor, Texture2D>
-            {
-                {TextureColor.Red, Assets.Texture2Ds.Player.Red},
-                {TextureColor.Green, Assets.Texture2Ds.Player.Green},
-                {TextureColor.Blue, Assets.Texture2Ds.Player.Blue}
-            }, new Vector2(100f, 0f), 1f);
+            player = new Player(TextureColor.Red, Assets.Texture2Ds.Player.Walk, Assets.Texture2Ds.Player.Jump, new Vector2(100f, 0f), 1f);
 
             PlatformManager.AddPlatform(TextureColor.Blue, Platform.OrientationType.Horizontal);
             PlatformManager.AddPlatform(TextureColor.Green, Platform.OrientationType.Horizontal);

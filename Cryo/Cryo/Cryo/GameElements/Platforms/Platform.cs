@@ -17,39 +17,15 @@ namespace Cryo.GameElements.Platforms
 
         public Platform(TextureColor color, Vector2 position, float scale, OrientationType orientation)
         {
-            var textures = new Dictionary<TextureColor, Dictionary<OrientationType, Texture2D>>
+            var textures = new Dictionary<OrientationType, Texture2D>
             {
-                {
-                    TextureColor.Red,
-                    new Dictionary<OrientationType, Texture2D>
-                    {
-                        {OrientationType.Horizontal, Assets.Texture2Ds.Platforms.Red.Horizontal},
-                        {OrientationType.Vertical, Assets.Texture2Ds.Platforms.Red.Vertical}
-                    }
-                },
-                {
-                    TextureColor.Green,
-                    new Dictionary<OrientationType, Texture2D>
-                    {
-                        {OrientationType.Horizontal, Assets.Texture2Ds.Platforms.Green.Horizontal},
-                        {OrientationType.Vertical, Assets.Texture2Ds.Platforms.Green.Vertical}
-                    }
-                },
-                {
-                    TextureColor.Blue,
-                    new Dictionary<OrientationType, Texture2D>
-                    {
-                        {OrientationType.Horizontal, Assets.Texture2Ds.Platforms.Blue.Horizontal},
-                        {OrientationType.Vertical, Assets.Texture2Ds.Platforms.Blue.Vertical}
-                    }
-                }
+                { OrientationType.Horizontal, Assets.Texture2Ds.Platforms.Horizontal },
+                { OrientationType.Vertical, Assets.Texture2Ds.Platforms.Vertical }
             };
-            Texture = new GameTexture(textures[color][orientation], position, scale, 0f);
 
-            Color = color;
+            Texture = new GameTexture(textures[orientation], position, scale, 0f, color.ToColor());
+
             Orientation = orientation;
         }
-
-        public TextureColor Color { get; set; }
     }
 }

@@ -1,15 +1,16 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Cryo
 {
     public static class Assets
     {
-        private static ContentManager content { get; set; }
+        private static ContentManager Content { get; set; }
 
         public static void Initialize(ContentManager contentManager)
         {
-            content = contentManager;
+            Content = contentManager;
 
             Texture2Ds.Initialize();
             Fonts.Initialize();
@@ -23,76 +24,30 @@ namespace Cryo
                 Player.Initialize();
             }
 
-            private static Texture2D LoadTexture2D(string path) => content.Load<Texture2D>($"Texture2Ds\\{path}");
+            private static Texture2D LoadTexture2D(string path) => Content.Load<Texture2D>($"Texture2Ds\\{path}");
 
             public static class Platforms
             {
+                public static Texture2D Horizontal { get; private set; }
+                public static Texture2D Vertical { get; private set; }
+
                 public static void Initialize()
                 {
-                    Red.Initialize();
-                    Green.Initialize();
-                    Blue.Initialize();
+                    Horizontal = LoadPlatformTexture2D("Horizontal");
+                    Vertical = LoadPlatformTexture2D("Vertical");
                 }
 
                 private static Texture2D LoadPlatformTexture2D(string path) => LoadTexture2D($"Platforms\\{path}");
-
-                public static class Red
-                {
-                    public static Texture2D Horizontal { get; private set; }
-                    public static Texture2D Vertical { get; private set; }
-
-                    public static void Initialize()
-                    {
-                        Horizontal = LoadRedPlatformTexture2D("Horizontal");
-                        Vertical = LoadRedPlatformTexture2D("Vertical");
-                    }
-
-                    private static Texture2D LoadRedPlatformTexture2D(string path)
-                        => LoadPlatformTexture2D($"Red\\{path}");
-                }
-
-                public static class Green
-                {
-                    public static Texture2D Horizontal { get; private set; }
-                    public static Texture2D Vertical { get; private set; }
-
-                    public static void Initialize()
-                    {
-                        Horizontal = LoadGreenPlatformTexture2D("Horizontal");
-                        Vertical = LoadGreenPlatformTexture2D("Vertical");
-                    }
-
-                    private static Texture2D LoadGreenPlatformTexture2D(string path)
-                        => LoadPlatformTexture2D($"Green\\{path}");
-                }
-
-                public static class Blue
-                {
-                    public static Texture2D Horizontal { get; private set; }
-                    public static Texture2D Vertical { get; private set; }
-
-                    public static void Initialize()
-                    {
-                        Horizontal = LoadBluePlatformTexture2D("Horizontal");
-                        Vertical = LoadBluePlatformTexture2D("Vertical");
-                    }
-
-                    private static Texture2D LoadBluePlatformTexture2D(string path)
-                        => LoadPlatformTexture2D($"Blue\\{path}");
-                }
             }
 
             public static class Player
             {
-                public static Texture2D Red { get; private set; }
-                public static Texture2D Green { get; private set; }
-                public static Texture2D Blue { get; private set; }
+                public static List<Texture2D> Walk { get; private set; } = new List<Texture2D>();
+                public static Texture2D Jump { get; private set; }
 
                 public static void Initialize()
                 {
-                    Red = LoadPlayerTexture2D("Red");
-                    Green = LoadPlayerTexture2D("Green");
-                    Blue = LoadPlayerTexture2D("Blue");
+                    Walk.Add(LoadPlayerTexture2D("Walk1"));
                 }
 
                 private static Texture2D LoadPlayerTexture2D(string path) => LoadTexture2D($"Player\\{path}");
@@ -107,7 +62,7 @@ namespace Cryo
 
             private static SpriteFont LoadFont(string path)
             {
-                return content.Load<SpriteFont>($"Fonts\\{path}");
+                return Content.Load<SpriteFont>($"Fonts\\{path}");
             }
         }
     }

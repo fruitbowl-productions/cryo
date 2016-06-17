@@ -7,13 +7,15 @@ namespace Cryo.Engine
     {
         public Vector2 Position;
         public Texture2D Texture;
+        public Color Tint { get; set; }
 
-        public GameTexture(Texture2D texture, Vector2 position, float scale, float rotation)
+        public GameTexture(Texture2D texture, Vector2 position, float scale, float rotation, Color tint)
         {
             Texture = texture;
             Position = position;
             Scale = scale;
             Rotation = rotation;
+            Tint = tint;
         }
 
         public GameTexture(GameTexture other)
@@ -21,6 +23,7 @@ namespace Cryo.Engine
             Texture = other.Texture;
             Position = other.Position;
             Scale = other.Scale;
+            Tint = other.Tint;
         }
 
         public float Scale { get; set; }
@@ -55,7 +58,7 @@ namespace Cryo.Engine
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Position, null, Color.White, 0f, Vector2.Zero, Scale, SpriteEffects.None, 1f);
+            spriteBatch.Draw(Texture, Position, null, Tint, 0f, Vector2.Zero, Scale, SpriteEffects.None, 1f);
         }
     }
 }

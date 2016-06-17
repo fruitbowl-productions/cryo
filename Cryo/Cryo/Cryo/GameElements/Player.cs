@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using Cryo.Engine;
 using Cryo.Engine.Keyboards;
 using Cryo.GameElements.Platforms;
@@ -16,18 +17,19 @@ namespace Cryo.GameElements
 
         private readonly Control jumpControl;
 
-        private readonly Dictionary<TextureColor, Texture2D> textures;
-
-        private TextureColor color;
+        private readonly List<Texture2D> walkTextures;
+        private readonly Texture2D jumpTexture;
 
         private Vector2 velocity;
 
-        public Player(TextureColor startingColor, Dictionary<TextureColor, Texture2D> texturesInput, Vector2 position,
+        public Player(TextureColor startingColor, List<Texture2D> walkTextures, Texture2D jumpTexture, Vector2 position,
             float scale)
         {
-            Texture = new GameTexture(null, position, scale, 0f);
+            Texture = new GameTexture(walkTextures[0], position, scale, 0f, startingColor.ToColor());
 
-            textures = texturesInput;
+            this.walkTextures = walkTextures;
+            this.jumpTexture = jumpTexture;
+
             Color = startingColor;
 
             CanJump = false;
@@ -45,15 +47,9 @@ namespace Cryo.GameElements
 
         public TextureColor Color
         {
-            get { return color; }
-            set
-            {
-                color = value;
-                Texture = new GameTexture(CurrentTexture2D, Texture.Position, Texture.Scale, 0f);
-            }
+            get { return Texture.Tint.ToTextureColor(); }
+            set { Texture.Tint = value.ToColor(); }
         }
-
-        private Texture2D CurrentTexture2D => textures[Color];
 
         public override void Update(GameTime gameTime)
         {

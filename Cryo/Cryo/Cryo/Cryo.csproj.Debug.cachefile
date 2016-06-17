@@ -1,9 +1,3 @@
-Content\Texture2Ds\Player\Green.xnb
-Content\Texture2Ds\Player\Red.xnb
-Content\Texture2Ds\Player\Blue.xnb
-Content\Texture2Ds\Platforms\Blue\Horizontal.xnb
-Content\Texture2Ds\Platforms\Green\Horizontal.xnb
-Content\Texture2Ds\Platforms\Red\Horizontal.xnb
-Content\Texture2Ds\Platforms\Blue\Vertical.xnb
-Content\Texture2Ds\Platforms\Green\Vertical.xnb
-Content\Texture2Ds\Platforms\Red\Vertical.xnb
+Content\Texture2Ds\Player\Walk1.xnb
+Content\Texture2Ds\Platforms\Horizontal.xnb
+Content\Texture2Ds\Platforms\Vertical.xnb

@@ -30,63 +30,21 @@
     <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.VideoImporters, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Texture2Ds\Player\Green.jpg">
-      <Name>Green</Name>
+    <Compile Include="Texture2Ds\Player\Walk1.jpg">
+      <Name>Walk1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Texture2Ds\Player\Red.jpg">
-      <Name>Red</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Texture2Ds\Player\Blue.jpg">
-      <Name>Blue</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Texture2Ds\Platforms\Blue\Horizontal.png">
+    <Compile Include="Texture2Ds\Platforms\Horizontal.png">
       <Name>Horizontal</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Texture2Ds\Platforms\Green\Horizontal.png">
-      <Name>Horizontal</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Texture2Ds\Platforms\Red\Horizontal.png">
-      <Name>Horizontal</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Texture2Ds\Platforms\Blue\Vertical.png">
-      <Name>Vertical</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Texture2Ds\Platforms\Green\Vertical.png">
-      <Name>Vertical</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Texture2Ds\Platforms\Red\Vertical.png">
+    <Compile Include="Texture2Ds\Platforms\Vertical.png">
       <Name>Vertical</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
